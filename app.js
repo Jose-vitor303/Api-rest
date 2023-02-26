@@ -1,27 +1,14 @@
-const connectDB = require('./db/connect.js')
-const express = require('express')
-const app = express()
+const express = require("express")
 const users = require('./routes/users.js')
-require('dotenv').config()
 
-app.use(express.json())
+const defaultBD = (dataBase)=>{
 
-//Main route
-app.use('/api/users', users)
+    const app = express()
+    app.use(express.json())
+    app.use('/api/users', users)//Main Route
 
-const port = 3000
-
-const start = async() =>{
-    try {
-        await connectDB(process.env.MONGO_URI)
-        app.listen(port, console.log(`It's running on ${port}`))
-
-    } catch (error) {
-        console.log(error)
-    }
+    return app;
 }
 
-start();
+module.exports = defaultBD
 
-
-module.exports = app
