@@ -5,7 +5,6 @@ const config = {
     testEnvironment: "node",
     detectOpenHandles : true,
     testTimeout: 20000,
-
   };
   
   module.exports = config;

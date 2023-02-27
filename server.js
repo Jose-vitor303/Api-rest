@@ -1,10 +1,7 @@
-const dataBase = require("./controllers/user.js")
-const makeApp = require("./app.js")
+const app = require("./app.js")
 const connectDB = require('./db/connect.js')
 require('dotenv').config()
 const port = 3000
-
-const app = makeApp(dataBase)
 
 
 const start = async() =>{
