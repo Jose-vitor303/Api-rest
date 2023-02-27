@@ -1,11 +1,10 @@
 /** @type {import('jest').Config} */
 const config = {
-    detectOpenHandles: true,
+    verbose: true,
     preset: "ts-jest",
     testEnvironment: "node",
-    testMatch : ["**/tests/***.test.js?(x)"]
-    // the following line is needed in order to grab modules from the
-    // src folder without the need to write them relatively
+    detectOpenHandles : true,
+    testTimeout: 20000,
   };
   
   module.exports = config;
