@@ -27,17 +27,6 @@ describe("POST /api/users", ()=>{
             expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
         })
 
-        // test("response has userID", async()=>{
-        //     const response = await request(app).post("/api/users").send({
-        //         name: "name",
-        //         dob : "2000-06-22",
-        //         address : "address",
-        //         description: "a good person"
-        //     })
-
-        //     expect(response.body.id).toBeDefined()
-        // })
-
     })
 
     describe("When the name, dob, address, description is missing", ()=>{

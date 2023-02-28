@@ -1,0 +1,223 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "User API",
+        "description": "In this documention you will able to consult the API end-points",
+        "contact": {
+            "email" : "jvitorfacanha@Outlook.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Local Server"
+      }
+    ],
+    "paths": {
+        "/api/users/all": {
+            "get":{
+                "summary": "Search all users",
+                "description": "Route responsibile for fetching all users",
+                "tags": ["Users"],
+                "responses": {
+                    "500" : {
+                        "description": "Internal Server Error"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/user/{id}" : {
+            "get":{
+                "summary": "Search user by id",
+                "description": "Route responsibile for searching for user by id",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "User Id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "500" : {
+                        "description": "Internal Server Error"
+                    },
+                    "404" :{
+                        "description": "User Not found"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/create": {
+            "post":{
+                "summary": "Create a new User",
+                "description": "Route responsibile for creating a new user",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema":{
+                                "type":"object",
+                                "$ref": "#/components/schemas/User"
+                            }
+                        },
+                        "examples": {
+                            "users":{
+                                "value": {
+                                    "name": "Junior Silva",
+                                    "dob" : "2000-05-04",
+                                    "address": "Rua Central",
+                                    "description": "I'm from brasil"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500" : {
+                        "description": "Internal Server Error"
+                    },
+                    "200":{
+                        "description": "Created",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }, 
+        "/api/users/update/{id}": {
+            "patch":{
+                "summary": "Update a user by id",
+                "description": "Route responsibile for update a user by id",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema":{
+                                "type":"object",
+                                "$ref": "#/components/schemas/User"
+                            }
+                        },
+                        "examples": {
+                            "users":{
+                                "value": {
+                                    "name": "Junior Silva",
+                                    "dob" : "2000-05-04",
+                                    "address": "Rua Central",
+                                    "description": "I'm from brasil"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "User Id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "500" : {
+                        "description": "Internal Server Error"
+                    },
+                    "404" :{
+                        "description": "User Not found"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }      
+        },
+        "/api/users/delete/{id}": {
+            "delete":{
+                "summary": "Delete a user",
+                "description": "Route responsibile for delete a specific user",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "User Id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "500" : {
+                        "description": "Internal Server Error"
+                    },
+                    "200":{
+                        "description": "OK"
+                        }
+                    },
+                    "404":{
+                        "description": "User Not found"
+                    }
+                }
+        }
+    },
+    "components": {
+        "schemas":{
+            "User" : {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                     }, 
+                     "dob": {
+                        "type": "date"
+                       },
+                     "address":{
+                       "type": "string"
+                     },
+                     "description":{
+                        "type":"string"
+                     }
+                }
+            }
+        }
+    }
+}

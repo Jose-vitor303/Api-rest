@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({ //validation
-                  
+  
   name: {
     type: String,
     required : [true, 'must provide name'], 

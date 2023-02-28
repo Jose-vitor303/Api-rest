@@ -1,5 +1,6 @@
 const User = require('../models/User.js')
 
+
 const getAllUsers = async (req, res) =>{
     try {
         const user = await User.find({})
@@ -17,7 +18,7 @@ const createUser = async(req, res) =>{
         res.status(200).json({user})
 
     } catch (error) {
-        res.status(400).json({error})
+        res.status(500).json({error})
     }
 }
 
